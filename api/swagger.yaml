@@ -6,7 +6,7 @@ info:
   title: "ReturnsProject"
   contact:
     email: "chocolateironman98@gmail.com"
-host: "returns-project-api.herokuapp.com/"
+host: "returns-project-api.herokuapp.com"
 schemes:
 - "https"
 consumes:
