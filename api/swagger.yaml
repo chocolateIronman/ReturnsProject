@@ -6,7 +6,7 @@ info:
   title: "ReturnsProject"
   contact:
     email: "chocolateironman98@gmail.com"
-host: localhost
+host: "localhost:8080"
 schemes:
 - "http"
 consumes:
@@ -280,10 +280,10 @@ definitions:
   Customer:
     type: "object"
     required:
-    - "name"
     - "address"
-    - "postcode"
     - "g_area"
+    - "name"
+    - "postcode"
     properties:
       name:
         type: "string"
@@ -304,17 +304,17 @@ definitions:
     required:
     - "barcode"
     - "customer_id"
-    - "date_returned"
     - "date_redelivered"
+    - "date_returned"
     properties:
       barcode:
         type: "integer"
       customer_id:
         type: "string"
-      date_returned: 
+      date_returned:
         type: "integer"
       date_redelivered:
-        type: 'integer'
+        type: "integer"
     description: "parameters needed to create a packet"
     example:
       barcode: 1234567891234
