@@ -1,0 +1,333 @@
+---
+swagger: "2.0"
+info:
+  description: "No description"
+  version: "1.0.0"
+  title: "ReturnsProject"
+  contact:
+    email: "chocolateironman98@gmail.com"
+host: localhost
+schemes:
+- "http"
+consumes:
+- "application/json"
+produces:
+- "application/json"
+paths:
+  /customer:
+    get:
+      tags:
+      - "Customer"
+      summary: "Loads a list of customers"
+      operationId: "getCustomers"
+      produces:
+      - "application/json"
+      - "application/x-yaml"
+      - "application/xml"
+      - "text/xml"
+      parameters: []
+      responses:
+        "200":
+          description: "Status 200"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Customer"
+        "400":
+          description: "Status 400"
+      x-swagger-router-controller: "Customer"
+    post:
+      tags:
+      - "Customer"
+      summary: "Adds a customer"
+      operationId: "postCustomer"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/Customer"
+      responses:
+        "200":
+          description: "The customer has been saved"
+          schema:
+            $ref: "#/definitions/Customer"
+        "400":
+          description: "The customer already exists"
+      x-swagger-router-controller: "Customer"
+  /customer/{CustomerID}:
+    get:
+      tags:
+      - "Customer"
+      summary: "Loads a customer"
+      operationId: "getCustomer"
+      parameters:
+      - name: "CustomerID"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "Status 200"
+        "400":
+          description: "Status 400"
+      x-swagger-router-controller: "Customer"
+    put:
+      tags:
+      - "Customer"
+      summary: "Updates a customer"
+      operationId: "putCustomer"
+      parameters:
+      - name: "CustomerID"
+        in: "path"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/Customer"
+      responses:
+        "200":
+          description: "Status 200"
+        "400":
+          description: "Bad Request"
+      x-swagger-router-controller: "Customer"
+    delete:
+      tags:
+      - "Customer"
+      summary: "Deletes a customer"
+      operationId: "deleteCustomer"
+      parameters:
+      - name: "CustomerID"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "Status 200"
+        "400":
+          description: "Bad Request"
+      x-swagger-router-controller: "Customer"
+  /Consignment:
+    get:
+      tags:
+      - "Consignment"
+      summary: "Loads a list of Consignments"
+      operationId: "getConsignments"
+      parameters: []
+      responses:
+        "200":
+          description: "Status 200"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Consignment"
+        "404":
+          description: "Status 404"
+      x-swagger-router-controller: "Consignment"
+    post:
+      tags:
+      - "Consignment"
+      summary: "Adds a Consignment"
+      operationId: "postConsignment"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/Consignment"
+      responses:
+        "200":
+          description: "The Consignment is created"
+        "400":
+          description: "The Consignment already exists"
+      x-swagger-router-controller: "Consignment"
+  /Consignment/{ConsignmentID}:
+    get:
+      tags:
+      - "Consignment"
+      summary: "Loads a Consignment"
+      operationId: "getConsignment"
+      parameters:
+      - name: "ConsignmentID"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "The Consignment exists"
+        "404":
+          description: "The Consignment doesn't exist"
+      x-swagger-router-controller: "Consignment"
+    put:
+      tags:
+      - "Consignment"
+      summary: "Updates a Consignment"
+      operationId: "putConsignment"
+      parameters:
+      - name: "ConsignmentID"
+        in: "path"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/Consignment"
+      responses:
+        "200":
+          description: "Status 200"
+        "400":
+          description: "Bad Request"
+      x-swagger-router-controller: "Consignment"
+    delete:
+      tags:
+      - "Consignment"
+      summary: "Deletes a Consignment"
+      operationId: "deleteConsignment"
+      parameters:
+      - name: "ConsignmentID"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "Status 200"
+        "400":
+          description: "Bad Request"
+      x-swagger-router-controller: "Consignment"
+  /Van:
+    get:
+      tags:
+      - "Van"
+      summary: "Loads a list of vans"
+      operationId: "getVans"
+      parameters: []
+      responses:
+        "200":
+          description: "Status 200"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Van"
+        "404":
+          description: "Status 404"
+      x-swagger-router-controller: "Van"
+    post:
+      tags:
+      - "Van"
+      summary: "Adds a van"
+      operationId: "postVan"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/Van"
+      responses:
+        "200":
+          description: "The van is created"
+        "400":
+          description: "The van already exists"
+      x-swagger-router-controller: "Van"
+  /Van/{VanID}:
+    get:
+      tags:
+      - "Van"
+      summary: "Loads a van"
+      operationId: "getVan"
+      parameters:
+      - name: "VanID"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "The van exists"
+        "404":
+          description: "The van doesn't exist"
+      x-swagger-router-controller: "Van"
+    delete:
+      tags:
+      - "Van"
+      summary: "Deletes a van"
+      operationId: "deleteVan"
+      parameters:
+      - name: "VanID"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "Status 200"
+        "400":
+          description: "Bad Request"
+      x-swagger-router-controller: "Van"
+definitions:
+  Customer:
+    type: "object"
+    required:
+    - "name"
+    - "address"
+    - "postcode"
+    - "g_area"
+    properties:
+      name:
+        type: "string"
+      address:
+        type: "string"
+      postcode:
+        type: "string"
+      g_area:
+        type: "string"
+    description: "parameters needed to create a customer"
+    example:
+      name: "Maria"
+      address: "Liverpool Rd"
+      postcode: "M20"
+      g_area: "uuid-12345"
+  Consignment:
+    type: "object"
+    required:
+    - "barcode"
+    - "customer_id"
+    - "date_returned"
+    - "date_redelivered"
+    properties:
+      barcode:
+        type: "integer"
+      customer_id:
+        type: "string"
+      date_returned: 
+        type: "integer"
+      date_redelivered:
+        type: 'integer'
+    description: "parameters needed to create a packet"
+    example:
+      barcode: 1234567891234
+      customer_id: "uuid-12345"
+      date_returned: 1594319612
+      date_redelivered: 1594419612
+  Van:
+    type: "object"
+    required:
+    - "g_area"
+    properties:
+      g_area:
+        type: "string"
+    description: "region of the van"
+    example:
+      g_area: "Manchester"
