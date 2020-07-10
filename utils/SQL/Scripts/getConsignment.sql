@@ -1,0 +1,1 @@
+SELECT * FROM consignments WHERE id=$1

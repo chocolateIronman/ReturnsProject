@@ -1,5 +1,7 @@
 'use strict';
 
+var database = require("../utils/data/data");
+var httpUtil = require("../utils/http/http");
 
 /**
  * Deletes a van
@@ -7,10 +9,20 @@
  * vanID String 
  * no response value expected for this operation
  **/
-exports.deleteVan = function(vanID) {
-  return new Promise(function(resolve, reject) {
-    resolve();
-  });
+exports.deleteVan = function(args,res,next) {
+  var id = args.VanID.value || null;
+
+  database.deleteVan(
+    id
+  ).then(
+    (result)=>{
+      httpUtil.endHttpOK(result,res);
+    }
+  ).catch(
+    (error)=>{
+      httpUtil.endHttpErr(error,res);
+    }
+  )
 }
 
 
@@ -20,10 +32,19 @@ exports.deleteVan = function(vanID) {
  * vanID String 
  * no response value expected for this operation
  **/
-exports.getVan = function(vanID) {
-  return new Promise(function(resolve, reject) {
-    resolve();
-  });
+exports.getVan = function(args,res,next) {
+  var id=args.VanID.value || null;
+  database.getVan(
+    id
+  ).then(
+    (result)=>{
+      httpUtil.endHttpOK(result,res);
+    }
+  ).catch(
+    (error)=>{
+      httpUtil.endHttpErr(error,res);
+    }
+  )
 }
 
 
@@ -32,20 +53,18 @@ exports.getVan = function(vanID) {
  *
  * returns List
  **/
-exports.getVans = function() {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = [ {
-  "g_area" : "Manchester"
-}, {
-  "g_area" : "Manchester"
-} ];
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
+exports.getVans = function(args,res,next) {
+  database.getVans(
+
+  ).then(
+    (result)=>{
+      httpUtil.endHttpOK(result,res);
     }
-  });
+  ).catch(
+    (error)=>{
+      httpUtil.endHttpErr(error,res);
+    }
+  )
 }
 
 
@@ -55,9 +74,19 @@ exports.getVans = function() {
  * body Van 
  * no response value expected for this operation
  **/
-exports.postVan = function(body) {
-  return new Promise(function(resolve, reject) {
-    resolve();
-  });
+exports.postVan = function(args,res,next) {
+  var g_area=args.body.value.g_area || null;
+
+  database.postVan(
+    g_area
+  ).then(
+    (result)=>{
+      httpUtil.endHttpOK(result,res);
+    }
+  ).catch(
+    (error)=>{
+      httpUtil.endHttpErr(error,res);
+    }
+  )
 }
 

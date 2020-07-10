@@ -1,5 +1,7 @@
 'use strict';
 
+var database = require("../utils/data/data");
+var httpUtil = require("../utils/http/http");
 
 /**
  * Deletes a customer
@@ -7,10 +9,20 @@
  * customerID String 
  * no response value expected for this operation
  **/
-exports.deleteCustomer = function(customerID) {
-  return new Promise(function(resolve, reject) {
-    resolve();
-  });
+exports.deleteCustomer = function(args,res,next) {
+  var id=args.CustomerID.value || null;
+
+  database.deleteCustomer(
+    id
+  ).then(
+    (result)=>{
+      httpUtil.endHttpOK(result,res);
+    }
+  ).catch(
+    (error)=>{
+      httpUtil.endHttpErr(error,res);
+    }
+  )
 }
 
 
@@ -20,10 +32,19 @@ exports.deleteCustomer = function(customerID) {
  * customerID String 
  * no response value expected for this operation
  **/
-exports.getCustomer = function(customerID) {
-  return new Promise(function(resolve, reject) {
-    resolve();
-  });
+exports.getCustomer = function(args,res,next) {
+  var id=args.CustomerID.value || null;
+  database.getCustomer(
+    id
+  ).then(
+    (result)=>{
+      httpUtil.endHttpOK(result,res);
+    }
+  ).catch(
+    (error)=>{
+      httpUtil.endHttpErr(error,res);
+    }
+  )
 }
 
 
@@ -32,26 +53,18 @@ exports.getCustomer = function(customerID) {
  *
  * returns List
  **/
-exports.getCustomers = function() {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = [ {
-  "name" : "Maria",
-  "address" : "Liverpool Rd",
-  "postcode" : "M20",
-  "g_area" : "uuid-12345"
-}, {
-  "name" : "Maria",
-  "address" : "Liverpool Rd",
-  "postcode" : "M20",
-  "g_area" : "uuid-12345"
-} ];
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
+exports.getCustomers = function(args,res,next) {
+  database.getCustomers(
+
+  ).then(
+    (result)=>{
+      httpUtil.endHttpOK(result,res);
     }
-  });
+  ).catch(
+    (error)=>{
+      httpUtil.endHttpErr(error,res);
+    }
+  )
 }
 
 
@@ -61,21 +74,26 @@ exports.getCustomers = function() {
  * body Customer 
  * returns Customer
  **/
-exports.postCustomer = function(body) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = {
-  "name" : "Maria",
-  "address" : "Liverpool Rd",
-  "postcode" : "M20",
-  "g_area" : "uuid-12345"
-};
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
+exports.postCustomer = function(args,res,next) {
+  var name=args.body.value.name || null;
+  var address=args.body.value.address || null;
+  var postcode=args.body.value.postcode || null;
+  var g_area=args.body.value.g_area || null;
+
+  database.postCustomer(
+    name,
+    address,
+    postcode,
+    g_area
+  ).then(
+    (result)=>{
+      httpUtil.endHttpOK(result,res);
     }
-  });
+  ).catch(
+    (error)=>{
+      httpUtil.endHttpErr(error,res);
+    }
+  )
 }
 
 
@@ -86,9 +104,27 @@ exports.postCustomer = function(body) {
  * body Customer 
  * no response value expected for this operation
  **/
-exports.putCustomer = function(customerID,body) {
-  return new Promise(function(resolve, reject) {
-    resolve();
-  });
+exports.putCustomer = function(args,res,next) {
+  var id=args.CustomerID.value || null;
+  var name=args.body.value.name || null;
+  var address=args.body.value.address || null;
+  var postcode=args.body.value.postcode || null;
+  var g_area=args.body.value.g_area || null;
+
+  database.putCustomer(
+    id,
+    name,
+    address,
+    postcode,
+    g_area
+  ).then(
+    (result)=>{
+      httpUtil.endHttpOK(result,res);
+    }
+  ).catch(
+    (error)=>{
+      httpUtil.endHttpErr(error,res);
+    }
+  )
 }
 

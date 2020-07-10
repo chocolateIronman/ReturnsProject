@@ -1,0 +1,1 @@
+INSERT INTO consignments (barcode, customer_id, date_returned, date_redelivered) VALUES ($1,$2,$3,$4) RETURNING *

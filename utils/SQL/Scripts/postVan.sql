@@ -1,0 +1,1 @@
+INSERT INTO vans (g_area) VALUES ($1) RETURNING *

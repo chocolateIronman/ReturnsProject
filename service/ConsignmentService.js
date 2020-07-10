@@ -1,5 +1,8 @@
 'use strict';
 
+var database = require("../utils/data/data");
+var httpUtil = require("../utils/http/http");
+const error = require("../utils/error");
 
 /**
  * Deletes a Consignment
@@ -7,10 +10,20 @@
  * consignmentID String 
  * no response value expected for this operation
  **/
-exports.deleteConsignment = function(consignmentID) {
-  return new Promise(function(resolve, reject) {
-    resolve();
-  });
+exports.deleteConsignment = function(args,res,next) {
+  var id=args.ConsignmentID.value || null;
+
+  database.deleteConsignment(
+    id
+  ).then(
+    (result)=>{
+      httpUtil.endHttpOK(result,res);
+    }
+  ).catch(
+    (error)=>{
+      httpUtil.endHttpErr(error,res);
+    }
+  )
 }
 
 
@@ -20,10 +33,19 @@ exports.deleteConsignment = function(consignmentID) {
  * consignmentID String 
  * no response value expected for this operation
  **/
-exports.getConsignment = function(consignmentID) {
-  return new Promise(function(resolve, reject) {
-    resolve();
-  });
+exports.getConsignment = function(args,res,next) {
+  var id=args.ConsignmentID.value || null;
+  database.getConsignment(
+    id
+  ).then(
+    (result)=>{
+      httpUtil.endHttpOK(result,res);
+    }
+  ).catch(
+    (error)=>{
+      httpUtil.endHttpErr(error,res);
+    }
+  )
 }
 
 
@@ -32,26 +54,18 @@ exports.getConsignment = function(consignmentID) {
  *
  * returns List
  **/
-exports.getConsignments = function() {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = [ {
-  "barcode" : 1234567891234,
-  "customer_id" : "uuid-12345",
-  "date_returned" : 1594319612,
-  "date_redelivered" : 1594419612
-}, {
-  "barcode" : 1234567891234,
-  "customer_id" : "uuid-12345",
-  "date_returned" : 1594319612,
-  "date_redelivered" : 1594419612
-} ];
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
+exports.getConsignments = function(args,res,next) {
+  database.getConsignments(
+
+  ).then(
+    (result)=>{
+      httpUtil.endHttpOK(result,res);
     }
-  });
+  ).catch(
+    (error)=>{
+      httpUtil.endHttpErr(error,res);
+    }
+  )
 }
 
 
@@ -61,10 +75,28 @@ exports.getConsignments = function() {
  * body Consignment 
  * no response value expected for this operation
  **/
-exports.postConsignment = function(body) {
-  return new Promise(function(resolve, reject) {
-    resolve();
-  });
+exports.postConsignment = function(args,res,next) {
+  var id=args.ConsignmentID.value || null;
+  var barcode=args.body.value.barcode || null;
+  var customer_id=args.body.value.customer_id || null;
+  var date_returned=args.body.value.date_returned || null;
+  var date_redelivered=args.body.value.date_redelivered || null;
+
+  database.postConsignment(
+    id,
+    barcode,
+    customer_id,
+    date_returned,
+    date_redelivered
+  ).then(
+    (result)=>{
+      httpUtil.endHttpOK(result,res);
+    }
+  ).catch(
+    (error)=>{
+      httpUtil.endHttpErr(error,res);
+    }
+  )
 }
 
 
@@ -75,9 +107,27 @@ exports.postConsignment = function(body) {
  * body Consignment 
  * no response value expected for this operation
  **/
-exports.putConsignment = function(consignmentID,body) {
-  return new Promise(function(resolve, reject) {
-    resolve();
-  });
+exports.putConsignment = function(args,res,next) {
+  var id=args.ConsignmentID.value || null;
+  var barcode=args.body.value.barcode || null;
+  var customer_id=args.body.value.customer_id || null;
+  var date_returned=args.body.value.date_returned || null;
+  var date_redelivered=args.body.value.date_redelivered || null;
+
+  database.putConsignment(
+    id,
+    barcode,
+    customer_id,
+    date_returned,
+    date_redelivered
+  ).then(
+    (result)=>{
+      httpUtil.endHttpOK(result,res);
+    }
+  ).catch(
+    (error)=>{
+      httpUtil.endHttpErr(error,res);
+    }
+  )
 }
 
