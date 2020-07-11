@@ -220,8 +220,22 @@ class Sql {
         var query = genApi.gen("getSplits",parameters);
         var response = await dbApi.multiQuery([query]);
 
+        const createCsvWriter = require('csv-writer').createObjectCsvWriter;
+        const csvWriter = createCsvWriter({
+            path: 'out.csv',
+            header: [
+              {id: 'pack_id', title: 'ConsignmentID'},
+              {id: 'barcode', title: 'Barcode'},
+              {id: 'van_area', title: 'VanArea'},
+              {id: 'van_id', title: 'VanID'},
+            ]
+          });
+
         if(response[0].rows.length>0){
             result = response[0].rows;
+            csvWriter
+                .writeRecords(result)
+                .then(()=> console.log('The CSV file was written successfully'));
         }
 
         return result;
