@@ -7,7 +7,9 @@ info:
   contact:
     email: "chocolateironman98@gmail.com"
 host: "returns-project-api.herokuapp.com"
+# host: "localhost:8080"
 schemes:
+#- "http"
 - "https"
 consumes:
 - "application/json"
