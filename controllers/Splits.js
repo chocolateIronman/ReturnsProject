@@ -1,8 +1,8 @@
 'use strict';
 
 var utils = require('../utils/writer.js');
-var Van = require('../service/VanService');
+var Splits = require('../service/SplitsService');
 
 module.exports.getSplits = function getSplits (req, res, next) {
-    Van.getSplits(req.swagger.params,res,next);
+    Splits.getSplits(req.swagger.params,res,next);
   };
