@@ -224,6 +224,23 @@ class Sql {
 
         if(response[0].rows.length>0){
             result = response[0].rows;
+
+            const options = { 
+                fieldSeparator: ',',
+                quoteStrings: '"',
+                decimalSeparator: '.',
+                showLabels: true, 
+                showTitle: true,
+                title: 'My Awesome CSV',
+                useTextFile: false,
+                useBom: true,
+                useKeysAsHeaders: true,
+                // headers: ['Column 1', 'Column 2', etc...] <-- Won't work with useKeysAsHeaders present!
+              };
+             
+            const csvExporter = new ExportToCsv(options);
+             
+            csvExporter.generateCsv(result);
         }
 
         return result;
