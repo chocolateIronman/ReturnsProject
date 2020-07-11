@@ -1,5 +1,3 @@
-import { ExportToCsv } from 'export-to-csv';
-
 var genApi = require("../queryGeneration/gen")(__dirname+"/Scripts");
 dbApi = require("../database/databaseService");
 
