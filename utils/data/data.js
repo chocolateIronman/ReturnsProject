@@ -297,6 +297,24 @@ var deleteVan=async(id)=>{
     return result;
 }
 
+//-------------------SPLITS----------------------------
+var doGetSplits = async()=>{
+    var result = null;
+    result = await Sql.getSplits();
+    return result;
+}
+var getSplits = async()=>{
+    var result=null;
+
+    try{
+        result = await doGetSplits();
+    } catch(error) {
+        console.log(error.message);
+        throw errorApi.create500Error("SQL Error");
+    }
+
+    return result;
+};
 
 module.exports = {
     getCustomers:getCustomers,
@@ -314,5 +332,7 @@ module.exports = {
     getVans:getVans,
     postVan:postVan,
     getVan:getVan,
-    deleteVan:deleteVan
+    deleteVan:deleteVan,
+
+    getSplits:getSplits
 }

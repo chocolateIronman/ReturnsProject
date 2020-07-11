@@ -210,6 +210,23 @@ class Sql {
         return result;
     }
 
+    //---------------SPLITS--------------------------------
+    static async getSplits(){
+        var result=null;
+
+        var parameters=[];
+
+        //single query wrapped in multi query stuff
+        var query = genApi.gen("getSplits",parameters);
+        var response = await dbApi.multiQuery([query]);
+
+        if(response[0].rows.length>0){
+            result = response[0].rows;
+        }
+
+        return result;
+    }
+
 }
 
 module.exports = Sql;

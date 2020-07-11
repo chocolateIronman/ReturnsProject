@@ -6,9 +6,9 @@ info:
   title: "ReturnsProject"
   contact:
     email: "chocolateironman98@gmail.com"
-host: "returns-project-api.herokuapp.com"
+host: "localhost:8080"
 schemes:
-- "https"
+- "http"
 consumes:
 - "application/json"
 produces:
@@ -276,14 +276,37 @@ paths:
         "400":
           description: "Bad Request"
       x-swagger-router-controller: "Van"
+  /Splits:
+    get:
+      tags:
+      - "Packet_van"
+      summary: "Loads a list of which consignment is on which van"
+      operationId: "getSplits"
+      produces:
+      - "application/json"
+      - "application/x-yaml"
+      - "application/xml"
+      - "text/xml"
+      parameters: []
+      responses:
+        "200":
+          description: "Status 200"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Packet_van"
+        "400":
+          description: "Status 400"
+      x-swagger-router-controller: "Customer"
+  
 definitions:
   Customer:
     type: "object"
     required:
-    - "address"
-    - "g_area"
     - "name"
+    - "address"
     - "postcode"
+    - "g_area"
     properties:
       name:
         type: "string"
@@ -304,17 +327,17 @@ definitions:
     required:
     - "barcode"
     - "customer_id"
-    - "date_redelivered"
     - "date_returned"
+    - "date_redelivered"
     properties:
       barcode:
         type: "integer"
       customer_id:
         type: "string"
-      date_returned:
+      date_returned: 
         type: "integer"
       date_redelivered:
-        type: "integer"
+        type: 'integer'
     description: "parameters needed to create a packet"
     example:
       barcode: 1234567891234
@@ -331,3 +354,25 @@ definitions:
     description: "region of the van"
     example:
       g_area: "Manchester"
+  Packet_van:
+    type: "object"
+    required:
+      - "consignment_id"
+      - "barcode"
+      - "g_area"
+      - "van_id"
+    properties:
+      consignment_id:
+        type: "string"
+      barcode:
+        type: "integer"
+      g_area:
+        type: "string"
+      van_id:
+        type: "string"
+    description: "which consignment is on which van"
+    example:
+      consignment_id: "uuid-12345"
+      barcode: 1234567891234
+      g_area: "Manchester"
+      van_id: "uuid-12345"
