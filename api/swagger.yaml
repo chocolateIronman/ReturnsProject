@@ -13,10 +13,8 @@ schemes:
 - "https"
 consumes:
 - "application/json"
-- "text/html"
 produces:
 - "application/json"
-- "text/html"
 paths:
   /customer:
     get:
