@@ -1,3 +1,5 @@
+import { ExportToCsv } from 'export-to-csv';
+
 var genApi = require("../queryGeneration/gen")(__dirname+"/Scripts");
 dbApi = require("../database/databaseService");
 
@@ -220,22 +222,27 @@ class Sql {
         var query = genApi.gen("getSplits",parameters);
         var response = await dbApi.multiQuery([query]);
 
-        const createCsvWriter = require('csv-writer').createObjectCsvWriter;
-        const csvWriter = createCsvWriter({
-            path: 'out.csv',
-            header: [
-              {id: 'pack_id', title: 'ConsignmentID'},
-              {id: 'barcode', title: 'Barcode'},
-              {id: 'van_area', title: 'VanArea'},
-              {id: 'van_id', title: 'VanID'},
-            ]
-          });
+        
 
         if(response[0].rows.length>0){
             result = response[0].rows;
-            csvWriter
-                .writeRecords(result)
-                .then(()=> console.log('The CSV file was written successfully'));
+            
+            const options = { 
+                fieldSeparator: ',',
+                quoteStrings: '"',
+                decimalSeparator: '.',
+                showLabels: true, 
+                showTitle: true,
+                title: 'My Awesome CSV',
+                useTextFile: false,
+                useBom: true,
+                useKeysAsHeaders: true,
+                // headers: ['Column 1', 'Column 2', etc...] <-- Won't work with useKeysAsHeaders present!
+              };
+             
+            const csvExporter = new ExportToCsv(options);
+             
+            csvExporter.generateCsv(result);
         }
 
         return result;
