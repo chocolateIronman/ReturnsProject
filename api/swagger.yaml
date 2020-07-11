@@ -297,7 +297,7 @@ paths:
               $ref: "#/definitions/Packet_van"
         "400":
           description: "Status 400"
-      x-swagger-router-controller: "Customer"
+      x-swagger-router-controller: "Split"
   
 definitions:
   Customer:
