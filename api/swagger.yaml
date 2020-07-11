@@ -15,6 +15,7 @@ consumes:
 - "application/json"
 produces:
 - "application/json"
+- "text/html"
 paths:
   /customer:
     get:
